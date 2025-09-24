@@ -1,0 +1,322 @@
+{% extends "base.html" %}
+
+{% block title %}FAQ - RecuDL{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto" x-data="faq()">
+    <!-- Header -->
+    <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">
+            <i class="fas fa-question-circle text-primary-600 mr-3"></i>Frequently Asked Questions
+        </h1>
+        <p class="text-lg text-gray-600">Find answers to common questions about RecuDL</p>
+    </div>
+
+    <!-- Search -->
+    <div class="mb-8">
+        <div class="relative">
+            <input type="text" 
+                   x-model="searchTerm" 
+                   @input="filterFAQs()"
+                   class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                   placeholder="Search FAQ...">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-search text-gray-400"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="mb-8">
+        <div class="flex flex-wrap gap-2">
+            <button @click="selectedCategory = 'all'; filterFAQs()" 
+                    :class="selectedCategory === 'all' ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'"
+                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors">
+                All
+            </button>
+            <template x-for="category in categories" :key="category">
+                <button @click="selectedCategory = category; filterFAQs()" 
+                        :class="selectedCategory === category ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'"
+                        class="px-4 py-2 rounded-full text-sm font-medium transition-colors capitalize"
+                        x-text="category">
+                </button>
+            </template>
+        </div>
+    </div>
+
+    <!-- FAQ Items -->
+    <div class="space-y-4">
+        <template x-for="(faq, index) in filteredFAQs" :key="index">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                <button @click="faq.open = !faq.open" 
+                        class="w-full px-6 py-4 text-left focus:outline-none focus:bg-gray-50 hover:bg-gray-50 transition-colors">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-start space-x-3">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                                  :class="{
+                                      'bg-blue-100 text-blue-800': faq.category === 'setup',
+                                      'bg-green-100 text-green-800': faq.category === 'downloading',
+                                      'bg-yellow-100 text-yellow-800': faq.category === 'troubleshooting',
+                                      'bg-purple-100 text-purple-800': faq.category === 'features',
+                                      'bg-red-100 text-red-800': faq.category === 'errors'
+                                  }"
+                                  x-text="faq.category">
+                            </span>
+                            <h3 class="text-lg font-medium text-gray-900" x-text="faq.question"></h3>
+                        </div>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform" 
+                           :class="faq.open ? 'transform rotate-180' : ''"></i>
+                    </div>
+                </button>
+                <div x-show="faq.open" x-collapse class="px-6 pb-4">
+                    <div class="prose prose-sm max-w-none text-gray-700" x-html="faq.answer"></div>
+                </div>
+            </div>
+        </template>
+    </div>
+
+    <!-- No Results -->
+    <div x-show="filteredFAQs.length === 0" class="text-center py-12">
+        <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">No results found</h3>
+        <p class="text-gray-600">Try adjusting your search terms or category filter</p>
+    </div>
+
+    <!-- Still Need Help -->
+    <div class="mt-12 bg-gradient-to-r from-primary-50 to-blue-50 rounded-lg p-6 text-center">
+        <h2 class="text-xl font-semibold text-gray-900 mb-2">Still need help?</h2>
+        <p class="text-gray-600 mb-4">Can't find what you're looking for?</p>
+        <div class="space-x-4">
+            <a href="/get-started" class="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors">
+                <i class="fas fa-rocket mr-2"></i>Get Started Guide
+            </a>
+            <a href="https://github.com/your-repo/issues" target="_blank" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors">
+                <i class="fas fa-bug mr-2"></i>Report Issue
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function faq() {
+    return {
+        searchTerm: '',
+        selectedCategory: 'all',
+        categories: ['setup', 'downloading', 'features', 'troubleshooting', 'errors'],
+        faqs: [
+            {
+                category: 'setup',
+                question: 'How do I get my Cookie and User-Agent?',
+                answer: `
+                    <ol class="list-decimal list-inside space-y-2">
+                        <li>Open <strong>recu.me</strong> in your browser and log in</li>
+                        <li>Press <kbd class="bg-gray-100 px-2 py-1 rounded">F12</kbd> to open Developer Tools</li>
+                        <li>Go to the <strong>Network</strong> tab</li>
+                        <li>Refresh the page</li>
+                        <li>Click on any request to recu.me</li>
+                        <li>In the <strong>Request Headers</strong> section, copy the <strong>Cookie</strong> and <strong>User-Agent</strong> values</li>
+                        <li>Paste them in the <a href="/config" class="text-primary-600 underline">Configuration</a> page</li>
+                    </ol>
+                `,
+                open: false
+            },
+            {
+                category: 'setup',
+                question: 'Do I need to install anything else?',
+                answer: `
+                    <p>The basic downloader works out of the box. However, for the best experience, install:</p>
+                    <ul class="list-disc list-inside space-y-1 mt-2">
+                        <li><strong>FFmpeg</strong> - For MP4 conversion and thumbnail generation</li>
+                        <li><strong>FFprobe</strong> - For video analysis (usually comes with FFmpeg)</li>
+                    </ul>
+                    <p class="mt-2">Without FFmpeg, videos will be saved as .ts files and no thumbnails will be generated.</p>
+                `,
+                open: false
+            },
+            {
+                category: 'downloading',
+                question: 'How do I download only part of a video?',
+                answer: `
+                    <p>Use the time range format when adding URLs:</p>
+                    <div class="bg-gray-100 rounded p-3 my-2">
+                        <code>https://recu.me/video/username/play,START,END,TOTAL</code>
+                    </div>
+                    <p><strong>Example:</strong> To download from 10 minutes to 25 minutes of a 30-minute video:</p>
+                    <div class="bg-gray-100 rounded p-3 my-2">
+                        <code>https://recu.me/video/username/play,10:00,25:00,30:00</code>
+                    </div>
+                `,
+                open: false
+            },
+            {
+                category: 'downloading',
+                question: 'Can I download multiple videos at once?',
+                answer: `
+                    <p>Yes! Simply paste multiple URLs in the Dashboard, one per line:</p>
+                    <div class="bg-gray-100 rounded p-3 my-2">
+                        <code>https://recu.me/video/user1/play<br>
+                        https://recu.me/video/user2/play<br>
+                        https://recu.me/video/user3/play,5:00,15:00,20:00</code>
+                    </div>
+                    <p>All downloads will start simultaneously for maximum speed.</p>
+                `,
+                open: false
+            },
+            {
+                category: 'downloading',
+                question: 'Where are my downloaded files saved?',
+                answer: `
+                    <p>By default, files are saved in the <strong>downloads</strong> folder in your project directory. You can change this in the <a href="/config" class="text-primary-600 underline">Configuration</a> page.</p>
+                    <ul class="list-disc list-inside space-y-1 mt-2">
+                        <li><strong>Videos:</strong> downloads/ folder</li>
+                        <li><strong>Thumbnails:</strong> thumbnails/ folder</li>
+                        <li><strong>Reports:</strong> reports/ folder</li>
+                    </ul>
+                `,
+                open: false
+            },
+            {
+                category: 'features',
+                question: 'What is post-processing?',
+                answer: `
+                    <p>Post-processing automatically improves your downloads:</p>
+                    <ul class="list-disc list-inside space-y-1 mt-2">
+                        <li><strong>MP4 Conversion:</strong> Converts .ts files to .mp4 (smaller, more compatible)</li>
+                        <li><strong>Thumbnails:</strong> Creates preview images at 25% of video duration</li>
+                        <li><strong>Organization:</strong> Moves files to designated folders</li>
+                        <li><strong>Reports:</strong> Generates JSON files with download info</li>
+                        <li><strong>Cleanup:</strong> Removes temporary .m3u8 files</li>
+                    </ul>
+                    <p class="mt-2">All features can be enabled/disabled in <a href="/config" class="text-primary-600 underline">Configuration</a>.</p>
+                `,
+                open: false
+            },
+            {
+                category: 'features',
+                question: 'Can I resume interrupted downloads?',
+                answer: `
+                    <p>Yes! The downloader automatically tracks progress and can resume from where it left off.</p>
+                    <p class="mt-2">If a download fails, you can:</p>
+                    <ul class="list-disc list-inside space-y-1 mt-2">
+                        <li>Go to the <a href="/history" class="text-primary-600 underline">History</a> page</li>
+                        <li>Find the failed download</li>
+                        <li>Click the retry button <i class="fas fa-redo text-blue-500"></i></li>
+                    </ul>
+                `,
+                open: false
+            },
+            {
+                category: 'troubleshooting',
+                question: 'Downloads are failing with "Cookie" error',
+                answer: `
+                    <p>This means your authentication has expired or is invalid:</p>
+                    <ol class="list-decimal list-inside space-y-1 mt-2">
+                        <li>Log out and log back into recu.me</li>
+                        <li>Get fresh Cookie and User-Agent values (see setup guide)</li>
+                        <li>Update them in <a href="/config" class="text-primary-600 underline">Configuration</a></li>
+                        <li>Try downloading again</li>
+                    </ol>
+                `,
+                open: false
+            },
+            {
+                category: 'troubleshooting',
+                question: 'Videos are not converting to MP4',
+                answer: `
+                    <p>This happens when FFmpeg is not installed or not in your system PATH:</p>
+                    <ol class="list-decimal list-inside space-y-1 mt-2">
+                        <li>Download FFmpeg from <a href="https://ffmpeg.org/download.html" target="_blank" class="text-primary-600 underline">ffmpeg.org</a></li>
+                        <li>Add FFmpeg to your system PATH</li>
+                        <li>Restart the web server</li>
+                        <li>Enable "Remux to MP4" in <a href="/config" class="text-primary-600 underline">Configuration</a></li>
+                    </ol>
+                    <p class="mt-2">Without FFmpeg, videos will be saved as .ts files (which still work but are larger).</p>
+                `,
+                open: false
+            },
+            {
+                category: 'troubleshooting',
+                question: 'Downloads are very slow',
+                answer: `
+                    <p>Several factors can affect download speed:</p>
+                    <ul class="list-disc list-inside space-y-1 mt-2">
+                        <li><strong>Internet connection:</strong> Check your bandwidth</li>
+                        <li><strong>Server load:</strong> Recu.me servers may be busy</li>
+                        <li><strong>Multiple downloads:</strong> Each download shares your bandwidth</li>
+                        <li><strong>VPN:</strong> VPN connections can slow downloads</li>
+                    </ul>
+                    <p class="mt-2">Try downloading fewer videos simultaneously if speed is an issue.</p>
+                `,
+                open: false
+            },
+            {
+                category: 'errors',
+                question: 'What does "Cloudflare Blocked" mean?',
+                answer: `
+                    <p>Cloudflare is blocking your requests, usually due to:</p>
+                    <ul class="list-disc list-inside space-y-1 mt-2">
+                        <li><strong>Too many requests:</strong> Wait a few minutes before trying again</li>
+                        <li><strong>Invalid User-Agent:</strong> Make sure you copied it correctly from your browser</li>
+                        <li><strong>Suspicious activity:</strong> Try using a different IP address or VPN location</li>
+                    </ul>
+                `,
+                open: false
+            },
+            {
+                category: 'errors',
+                question: 'Getting "Daily View Used" error',
+                answer: `
+                    <p>You've reached the daily viewing limit for your account type:</p>
+                    <ul class="list-disc list-inside space-y-1 mt-2">
+                        <li><strong>Free accounts:</strong> Have limited daily views</li>
+                        <li><strong>Wait 24 hours:</strong> Limit resets daily</li>
+                        <li><strong>Upgrade account:</strong> Premium accounts have higher limits</li>
+                    </ul>
+                `,
+                open: false
+            },
+            {
+                category: 'features',
+                question: 'How do I access the web interface remotely?',
+                answer: `
+                    <p>By default, the web interface only accepts connections from localhost (127.0.0.1). To access it remotely:</p>
+                    <ol class="list-decimal list-inside space-y-1 mt-2">
+                        <li>Start the server with: <code class="bg-gray-100 px-2 py-1 rounded">python -m recu_download --web-ui 0.0.0.0 8080</code></li>
+                        <li>Access it from other devices using your computer's IP address</li>
+                        <li><strong>Security Warning:</strong> This makes the interface accessible to anyone on your network</li>
+                    </ol>
+                `,
+                open: false
+            }
+        ],
+        filteredFAQs: [],
+        
+        init() {
+            this.filteredFAQs = [...this.faqs];
+        },
+        
+        filterFAQs() {
+            let filtered = [...this.faqs];
+            
+            // Filter by category
+            if (this.selectedCategory !== 'all') {
+                filtered = filtered.filter(faq => faq.category === this.selectedCategory);
+            }
+            
+            // Filter by search term
+            if (this.searchTerm.trim()) {
+                const term = this.searchTerm.toLowerCase();
+                filtered = filtered.filter(faq => 
+                    faq.question.toLowerCase().includes(term) ||
+                    faq.answer.toLowerCase().includes(term)
+                );
+            }
+            
+            this.filteredFAQs = filtered;
+        }
+    }
+}
+</script>
+{% endblock %}

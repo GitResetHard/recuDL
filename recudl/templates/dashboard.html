@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - RecuDL{% endblock %}
+
+{% block content %}
+<div x-data="dashboard()" x-init="init()">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-download text-primary-600 text-2xl"></i>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="text-sm font-medium text-gray-500 truncate">Active Downloads</dt>
+                            <dd class="text-lg font-medium text-gray-900" x-text="stats.active"></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-check-circle text-green-600 text-2xl"></i>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="text-sm font-medium text-gray-500 truncate">Completed</dt>
+                            <dd class="text-lg font-medium text-gray-900" x-text="stats.completed"></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-exclamation-triangle text-yellow-600 text-2xl"></i>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="text-sm font-medium text-gray-500 truncate">Failed</dt>
+                            <dd class="text-lg font-medium text-gray-900" x-text="stats.failed"></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-clock text-gray-600 text-2xl"></i>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="text-sm font-medium text-gray-500 truncate">Total Downloads</dt>
+                            <dd class="text-lg font-medium text-gray-900" x-text="stats.total"></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Start Section -->
+    <div class="bg-white shadow rounded-lg mb-8">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+                <i class="fas fa-plus-circle mr-2"></i>Start New Download
+            </h3>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">URLs (one per line)</label>
+                    <textarea x-model="newDownload.urls" 
+                              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" 
+                              rows="4" 
+                              placeholder="https://recu.me/video/user1/play&#10;https://recu.me/video/user2/play,10:00,25:00,30:00"></textarea>
+                    <p class="mt-1 text-xs text-gray-500">
+                        For time ranges use: URL,START,END,TOTAL (e.g., https://recu.me/video/xxx/play,10:00,25:00,30:00)
+                    </p>
+                </div>
+                
+                <div class="flex items-center justify-end">
+                    
+                    <button @click="startDownload()" 
+                            :disabled="!newDownload.urls.trim() || loading"
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-play mr-2" x-show="!loading"></i>
+                        <i class="fas fa-spinner fa-spin mr-2" x-show="loading"></i>
+                        <span x-text="loading ? 'Starting...' : 'Start Download'"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Downloads -->
+    <div class="bg-white shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+                <i class="fas fa-list mr-2"></i>Current Downloads
+            </h3>
+            
+            <div x-show="downloads.length === 0" class="text-center py-8 text-gray-500">
+                <i class="fas fa-inbox text-4xl mb-4"></i>
+                <p>No active downloads</p>
+            </div>
+            
+            <div class="space-y-4" x-show="downloads.length > 0">
+                <template x-for="download in downloads" :key="download.id">
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-file-video text-primary-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900" x-text="download.current_file || 'Preparing...'"></p>
+                                    <p class="text-xs text-gray-500" x-text="download.urls.length + ' URL(s)'"></p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                                      :class="{
+                                          'bg-blue-100 text-blue-800': download.status === 'starting' || download.status === 'running',
+                                          'bg-green-100 text-green-800': download.status === 'completed',
+                                          'bg-red-100 text-red-800': download.status === 'failed',
+                                          'bg-gray-100 text-gray-800': download.status === 'cancelled'
+                                      }"
+                                      x-text="download.status">
+                                </span>
+                                
+                                <button @click="cancelDownload(download.id)" 
+                                        x-show="download.status === 'starting' || download.status === 'running'"
+                                        class="text-red-600 hover:text-red-800">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Progress Bar -->
+                        <div x-show="download.status === 'running'" class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-primary-600 h-2 rounded-full transition-all duration-300" 
+                                 :style="'width: ' + (download.progress || 0) + '%'"></div>
+                        </div>
+                        
+                        <!-- Error Message -->
+                        <div x-show="download.error" class="mt-2 text-sm text-red-600" x-text="download.error"></div>
+                        
+                        <!-- Timestamps -->
+                        <div class="mt-2 text-xs text-gray-500">
+                            <span>Started: </span>
+                            <span x-text="new Date(download.started_at * 1000).toLocaleString()"></span>
+                            <span x-show="download.completed_at"> • Completed: </span>
+                            <span x-show="download.completed_at" x-text="new Date(download.completed_at * 1000).toLocaleString()"></span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function dashboard() {
+    return {
+        downloads: [],
+        stats: {
+            active: 0,
+            completed: 0,
+            failed: 0,
+            total: 0
+        },
+        newDownload: {
+            urls: ''
+        },
+        loading: false,
+        
+        async init() {
+            await this.loadDownloads();
+            // Refresh every 2 seconds
+            setInterval(() => this.loadDownloads(), 2000);
+        },
+        
+        async loadDownloads() {
+            try {
+                this.downloads = await apiCall('/api/downloads');
+                this.updateStats();
+            } catch (error) {
+                console.error('Failed to load downloads:', error);
+            }
+        },
+        
+        updateStats() {
+            this.stats.total = this.downloads.length;
+            this.stats.active = this.downloads.filter(d => ['starting', 'running'].includes(d.status)).length;
+            this.stats.completed = this.downloads.filter(d => d.status === 'completed').length;
+            this.stats.failed = this.downloads.filter(d => d.status === 'failed').length;
+        },
+        
+        async startDownload() {
+            if (!this.newDownload.urls.trim()) return;
+            
+            this.loading = true;
+            try {
+                const urls = this.newDownload.urls.split('\n')
+                    .map(line => line.trim())
+                    .filter(line => line)
+                    .map(line => {
+                        // Parse comma-separated format: URL,START,END,TOTAL
+                        const parts = line.split(',');
+                        if (parts.length === 1) {
+                            return parts[0]; // Simple URL
+                        } else if (parts.length === 4) {
+                            return [parts[0], parts[1], parts[2], parts[3]]; // [URL, START, END, TOTAL]
+                        } else {
+                            return parts[0]; // Fallback to just URL if format is wrong
+                        }
+                    });
+                
+                await apiCall('/api/downloads', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        urls: urls,
+                        mode: 'parallel' // Always use parallel (fastest)
+                    })
+                });
+                
+                this.newDownload.urls = '';
+                showToast('Download started successfully!', 'success');
+                await this.loadDownloads();
+            } catch (error) {
+                console.error('Failed to start download:', error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
+        async cancelDownload(downloadId) {
+            try {
+                await apiCall(`/api/downloads/${downloadId}`, {
+                    method: 'DELETE'
+                });
+                showToast('Download cancelled', 'warning');
+                await this.loadDownloads();
+            } catch (error) {
+                console.error('Failed to cancel download:', error);
+            }
+        }
+    }
+}
+</script>
+{% endblock %}
