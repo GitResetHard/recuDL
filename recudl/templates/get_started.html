@@ -6,42 +6,42 @@
 <div class="max-w-4xl mx-auto">
     <!-- Header -->
     <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">
-            <i class="fas fa-rocket text-primary-600 mr-3"></i>Get Started
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <i class="fas fa-rocket text-primary-600 dark:text-primary-400 mr-3"></i>Get Started
         </h1>
-        <p class="text-lg text-gray-600">Learn how to use RecuDL in 3 simple steps</p>
+        <p class="text-lg text-gray-600 dark:text-gray-300">Learn how to use RecuDL in 3 simple steps</p>
     </div>
 
     <!-- Steps -->
     <div class="space-y-8">
         <!-- Step 1: Configuration -->
-        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <div class="bg-primary-50 px-6 py-4 border-b border-primary-100">
-                <h2 class="text-xl font-semibold text-primary-800 flex items-center">
-                    <span class="bg-primary-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">1</span>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-900/50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-colors duration-200">
+            <div class="bg-primary-50 dark:bg-primary-900/20 px-6 py-4 border-b border-primary-100 dark:border-primary-800">
+                <h2 class="text-xl font-semibold text-primary-800 dark:text-primary-200 flex items-center">
+                    <span class="bg-primary-600 dark:bg-primary-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">1</span>
                     Configure Authentication
                 </h2>
             </div>
             <div class="p-6">
-                <p class="text-gray-700 mb-4">First, you need to set up your authentication credentials to access Recu.me.</p>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">First, you need to set up your authentication credentials to access Recu.me.</p>
                 
-                <div class="bg-yellow-50 border border-yellow-200 rounded-md p-4 mb-4">
+                <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-md p-4 mb-4">
                     <div class="flex">
-                        <i class="fas fa-exclamation-triangle text-yellow-400 mr-2 mt-0.5"></i>
+                        <i class="fas fa-exclamation-triangle text-yellow-400 dark:text-yellow-300 mr-2 mt-0.5"></i>
                         <div>
-                            <h3 class="text-sm font-medium text-yellow-800">Important</h3>
-                            <p class="text-sm text-yellow-700 mt-1">You must be logged into Recu.me in your browser to get the required authentication data.</p>
+                            <h3 class="text-sm font-medium text-yellow-800 dark:text-yellow-200">Important</h3>
+                            <p class="text-sm text-yellow-700 dark:text-yellow-300 mt-1">You must be logged into Recu.me in your browser to get the required authentication data.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <h3 class="font-semibold text-gray-900 mb-3">📋 How to get Cookie & User-Agent:</h3>
-                        <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+                        <h3 class="font-semibold text-gray-900 dark:text-white mb-3">📋 How to get Cookie & User-Agent:</h3>
+                        <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700 dark:text-gray-300">
                             <li>Open <strong>recu.me</strong> in your browser</li>
                             <li>Log into your account</li>
-                            <li>Press <kbd class="bg-gray-100 px-2 py-1 rounded">F12</kbd> to open DevTools</li>
+                            <li>Press <kbd class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded">F12</kbd> to open DevTools</li>
                             <li>Go to <strong>Network</strong> tab</li>
                             <li>Refresh the page</li>
                             <li>Click on any request to recu.me</li>
@@ -50,15 +50,15 @@
                         </ol>
                     </div>
                     <div>
-                        <h3 class="font-semibold text-gray-900 mb-3">⚙️ Where to paste them:</h3>
-                        <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
-                            <li>Go to the <a href="/config" class="text-primary-600 hover:text-primary-800 underline">Configuration</a> page</li>
+                        <h3 class="font-semibold text-gray-900 dark:text-white mb-3">⚙️ Where to paste them:</h3>
+                        <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                            <li>Go to the <a href="/config" class="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 underline">Configuration</a> page</li>
                             <li>Paste your <strong>Cookie</strong> in the Cookie field</li>
                             <li>Paste your <strong>User-Agent</strong> in the User-Agent field</li>
                             <li>Click <strong>Save Configuration</strong></li>
                         </ol>
                         <div class="mt-4">
-                            <a href="/config" class="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors">
+                            <a href="/config" class="inline-flex items-center px-4 py-2 bg-primary-600 dark:bg-primary-500 text-white rounded-md hover:bg-primary-700 dark:hover:bg-primary-600 transition-colors duration-200">
                                 <i class="fas fa-cog mr-2"></i>Go to Configuration
                             </a>
                         </div>
@@ -68,37 +68,37 @@
         </div>
 
         <!-- Step 2: Download Videos -->
-        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <div class="bg-green-50 px-6 py-4 border-b border-green-100">
-                <h2 class="text-xl font-semibold text-green-800 flex items-center">
-                    <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">2</span>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-900/50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-colors duration-200">
+            <div class="bg-green-50 dark:bg-green-900/20 px-6 py-4 border-b border-green-100 dark:border-green-800">
+                <h2 class="text-xl font-semibold text-green-800 dark:text-green-200 flex items-center">
+                    <span class="bg-green-600 dark:bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">2</span>
                     Start Downloading
                 </h2>
             </div>
             <div class="p-6">
-                <p class="text-gray-700 mb-4">Now you can start downloading videos from Recu.me.</p>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">Now you can start downloading videos from Recu.me.</p>
                 
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <h3 class="font-semibold text-gray-900 mb-3">🎬 Basic Download:</h3>
-                        <div class="bg-gray-50 rounded-md p-4 mb-3">
-                            <code class="text-sm text-gray-800">https://recu.me/video/username/play</code>
+                        <h3 class="font-semibold text-gray-900 dark:text-white mb-3">🎬 Basic Download:</h3>
+                        <div class="bg-gray-50 dark:bg-gray-700 rounded-md p-4 mb-3">
+                            <code class="text-sm text-gray-800 dark:text-gray-200">https://recu.me/video/username/play</code>
                         </div>
-                        <p class="text-sm text-gray-600">Just paste the video URL and click "Start Download"</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Just paste the video URL and click "Start Download"</p>
                     </div>
                     <div>
-                        <h3 class="font-semibold text-gray-900 mb-3">⏱️ Time Range Download:</h3>
-                        <div class="bg-gray-50 rounded-md p-4 mb-3">
-                            <code class="text-sm text-gray-800">https://recu.me/video/username/play,10:00,25:00,30:00</code>
+                        <h3 class="font-semibold text-gray-900 dark:text-white mb-3">⏱️ Time Range Download:</h3>
+                        <div class="bg-gray-50 dark:bg-gray-700 rounded-md p-4 mb-3">
+                            <code class="text-sm text-gray-800 dark:text-gray-200">https://recu.me/video/username/play,10:00,25:00,30:00</code>
                         </div>
-                        <p class="text-sm text-gray-600">Download from 10min to 25min of a 30min video</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Download from 10min to 25min of a 30min video</p>
                     </div>
                 </div>
 
-                <div class="bg-blue-50 border border-blue-200 rounded-md p-4 mb-4">
-                    <h4 class="font-semibold text-blue-800 mb-2">Time Range Format:</h4>
-                    <p class="text-sm text-blue-700"><code>URL,START,END,TOTAL</code></p>
-                    <ul class="text-sm text-blue-700 mt-2 space-y-1">
+                <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md p-4 mb-4">
+                    <h4 class="font-semibold text-blue-800 dark:text-blue-200 mb-2">Time Range Format:</h4>
+                    <p class="text-sm text-blue-700 dark:text-blue-300"><code class="bg-blue-100 dark:bg-blue-800 px-1 rounded">URL,START,END,TOTAL</code></p>
+                    <ul class="text-sm text-blue-700 dark:text-blue-300 mt-2 space-y-1">
                         <li><strong>START:</strong> When to start downloading (e.g., 10:00)</li>
                         <li><strong>END:</strong> When to stop downloading (e.g., 25:00)</li>
                         <li><strong>TOTAL:</strong> Total video duration (e.g., 30:00)</li>
@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="text-center">
-                    <a href="/" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                    <a href="/" class="inline-flex items-center px-4 py-2 bg-green-600 dark:bg-green-500 text-white rounded-md hover:bg-green-700 dark:hover:bg-green-600 transition-colors duration-200">
                         <i class="fas fa-play mr-2"></i>Go to Dashboard
                     </a>
                 </div>
@@ -114,35 +114,35 @@
         </div>
 
         <!-- Step 3: Monitor Progress -->
-        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <div class="bg-purple-50 px-6 py-4 border-b border-purple-100">
-                <h2 class="text-xl font-semibold text-purple-800 flex items-center">
-                    <span class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">3</span>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-900/50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-colors duration-200">
+            <div class="bg-purple-50 dark:bg-purple-900/20 px-6 py-4 border-b border-purple-100 dark:border-purple-800">
+                <h2 class="text-xl font-semibold text-purple-800 dark:text-purple-200 flex items-center">
+                    <span class="bg-purple-600 dark:bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">3</span>
                     Monitor & Manage
                 </h2>
             </div>
             <div class="p-6">
                 <div class="grid md:grid-cols-3 gap-6">
                     <div class="text-center">
-                        <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
-                            <i class="fas fa-tachometer-alt text-blue-600 text-2xl"></i>
+                        <div class="bg-blue-100 dark:bg-blue-900/30 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-tachometer-alt text-blue-600 dark:text-blue-400 text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold text-gray-900 mb-2">Dashboard</h3>
-                        <p class="text-sm text-gray-600">Monitor active downloads, view progress bars, and see real-time statistics</p>
+                        <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Dashboard</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Monitor active downloads, view progress bars, and see real-time statistics</p>
                     </div>
                     <div class="text-center">
-                        <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
-                            <i class="fas fa-history text-green-600 text-2xl"></i>
+                        <div class="bg-green-100 dark:bg-green-900/30 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-history text-green-600 dark:text-green-400 text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold text-gray-900 mb-2">History</h3>
-                        <p class="text-sm text-gray-600">View completed downloads, search past downloads, and retry failed ones</p>
+                        <h3 class="font-semibold text-gray-900 dark:text-white mb-2">History</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">View completed downloads, search past downloads, and retry failed ones</p>
                     </div>
                     <div class="text-center">
-                        <div class="bg-orange-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
-                            <i class="fas fa-cog text-orange-600 text-2xl"></i>
+                        <div class="bg-orange-100 dark:bg-orange-900/30 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-cog text-orange-600 dark:text-orange-400 text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold text-gray-900 mb-2">Settings</h3>
-                        <p class="text-sm text-gray-600">Adjust post-processing options, output directories, and authentication</p>
+                        <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Settings</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Adjust post-processing options, output directories, and authentication</p>
                     </div>
                 </div>
             </div>
@@ -150,37 +150,37 @@
     </div>
 
     <!-- Quick Tips -->
-    <div class="mt-12 bg-gradient-to-r from-primary-50 to-blue-50 rounded-lg p-6">
-        <h2 class="text-xl font-semibold text-gray-900 mb-4">
-            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Quick Tips
+    <div class="mt-12 bg-gray-50 dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 transition-colors duration-200">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <i class="fas fa-lightbulb text-yellow-500 dark:text-yellow-400 mr-2"></i>Quick Tips
         </h2>
         <div class="grid md:grid-cols-2 gap-4">
             <div class="flex items-start space-x-3">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                <i class="fas fa-check-circle text-green-500 dark:text-green-400 mt-1"></i>
                 <div>
-                    <h3 class="font-medium text-gray-900">Multiple Downloads</h3>
-                    <p class="text-sm text-gray-600">Paste multiple URLs (one per line) to download several videos at once</p>
+                    <h3 class="font-medium text-gray-900 dark:text-white">Multiple Downloads</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Paste multiple URLs (one per line) to download several videos at once</p>
                 </div>
             </div>
             <div class="flex items-start space-x-3">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                <i class="fas fa-check-circle text-green-500 dark:text-green-400 mt-1"></i>
                 <div>
-                    <h3 class="font-medium text-gray-900">Auto-Processing</h3>
-                    <p class="text-sm text-gray-600">Videos are automatically converted to MP4 and thumbnails are generated</p>
+                    <h3 class="font-medium text-gray-900 dark:text-white">Auto-Processing</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Videos are automatically converted to MP4 and thumbnails are generated</p>
                 </div>
             </div>
             <div class="flex items-start space-x-3">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                <i class="fas fa-check-circle text-green-500 dark:text-green-400 mt-1"></i>
                 <div>
-                    <h3 class="font-medium text-gray-900">Resume Downloads</h3>
-                    <p class="text-sm text-gray-600">Interrupted downloads can be resumed from where they left off</p>
+                    <h3 class="font-medium text-gray-900 dark:text-white">Resume Downloads</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Interrupted downloads can be resumed from where they left off</p>
                 </div>
             </div>
             <div class="flex items-start space-x-3">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                <i class="fas fa-check-circle text-green-500 dark:text-green-400 mt-1"></i>
                 <div>
-                    <h3 class="font-medium text-gray-900">Real-time Updates</h3>
-                    <p class="text-sm text-gray-600">Progress updates every 2 seconds without refreshing the page</p>
+                    <h3 class="font-medium text-gray-900 dark:text-white">Real-time Updates</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Progress updates every 2 seconds without refreshing the page</p>
                 </div>
             </div>
         </div>
@@ -188,8 +188,8 @@
 
     <!-- Need Help -->
     <div class="mt-8 text-center">
-        <p class="text-gray-600 mb-4">Still need help?</p>
-        <a href="/faq" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors">
+        <p class="text-gray-600 dark:text-gray-400 mb-4">Still need help?</p>
+        <a href="/faq" class="inline-flex items-center px-4 py-2 bg-gray-600 dark:bg-gray-700 text-white rounded-md hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-200">
             <i class="fas fa-question-circle mr-2"></i>Check FAQ
         </a>
     </div>

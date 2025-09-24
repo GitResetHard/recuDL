@@ -4,16 +4,16 @@
 
 {% block content %}
 <div x-data="historyViewer()" x-init="init()">
-    <div class="bg-white shadow rounded-lg">
+    <div class="bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors duration-200">
         <div class="px-4 py-5 sm:p-6">
             <div class="flex items-center justify-between mb-6">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">
-                    <i class="fas fa-history mr-2"></i>Download History
+                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">
+                    <i class="fas fa-history mr-2 text-primary-600 dark:text-primary-400"></i>Download History
                 </h3>
                 <div class="flex items-center space-x-4">
                     <!-- Filter -->
                     <select x-model="filter" @change="applyFilter()" 
-                            class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500">
+                            class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200">
                         <option value="all">All Downloads</option>
                         <option value="COMPLETE">Completed</option>
                         <option value="FAILED">Failed</option>
@@ -24,15 +24,15 @@
                         <input type="text" 
                                x-model="searchTerm" 
                                @input="applyFilter()"
-                               class="pl-10 pr-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                               class="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
                                placeholder="Search downloads...">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fas fa-search text-gray-400"></i>
+                            <i class="fas fa-search text-gray-400 dark:text-gray-500"></i>
                         </div>
                     </div>
                     
                     <button @click="loadHistory()" 
-                            class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                            class="inline-flex items-center px-3 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200">
                         <i class="fas fa-sync-alt mr-2"></i>Refresh
                     </button>
                 </div>
@@ -40,34 +40,34 @@
 
             <!-- Loading State -->
             <div x-show="loading" class="text-center py-8">
-                <i class="fas fa-spinner fa-spin text-4xl text-gray-400 mb-4"></i>
-                <p class="text-gray-500">Loading history...</p>
+                <i class="fas fa-spinner fa-spin text-4xl text-gray-400 dark:text-gray-500 mb-4"></i>
+                <p class="text-gray-500 dark:text-gray-400">Loading history...</p>
             </div>
 
             <!-- Empty State -->
             <div x-show="!loading && filteredHistory.length === 0" class="text-center py-8">
-                <i class="fas fa-inbox text-4xl text-gray-400 mb-4"></i>
-                <p class="text-gray-500" x-text="searchTerm || filter !== 'all' ? 'No downloads match your criteria' : 'No download history found'"></p>
+                <i class="fas fa-inbox text-4xl text-gray-400 dark:text-gray-500 mb-4"></i>
+                <p class="text-gray-500 dark:text-gray-400" x-text="searchTerm || filter !== 'all' ? 'No downloads match your criteria' : 'No download history found'"></p>
             </div>
 
             <!-- History List -->
             <div x-show="!loading && filteredHistory.length > 0" class="space-y-4">
                 <template x-for="entry in filteredHistory" :key="entry.timestamp">
-                    <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                    <div class="border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 rounded-lg p-4 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200">
                         <div class="flex items-start justify-between">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center space-x-3 mb-2">
                                     <div class="flex-shrink-0">
-                                        <i class="fas fa-file-video text-primary-600"></i>
+                                        <i class="fas fa-file-video text-primary-600 dark:text-primary-400"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate" x-text="entry.filename || 'Unknown'"></p>
-                                        <p class="text-xs text-gray-500 truncate" x-text="entry.url"></p>
+                                        <p class="text-sm font-medium text-gray-900 dark:text-white truncate" x-text="entry.filename || 'Unknown'"></p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 truncate" x-text="entry.url"></p>
                                     </div>
                                 </div>
                                 
                                 <!-- Status and Timestamp -->
-                                <div class="flex items-center space-x-4 text-xs text-gray-500">
+                                <div class="flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400">
                                     <span x-text="new Date(entry.timestamp * 1000).toLocaleString()"></span>
                                     <span x-show="entry.last_index !== null">
                                         Last segment: <span x-text="entry.last_index"></span>
@@ -76,12 +76,12 @@
                             </div>
                             
                             <div class="flex items-center space-x-3">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors duration-200"
                                       :class="{
-                                          'bg-green-100 text-green-800': entry.status === 'COMPLETE',
-                                          'bg-red-100 text-red-800': entry.status === 'FAILED',
-                                          'bg-yellow-100 text-yellow-800': entry.status === 'ABORTED',
-                                          'bg-gray-100 text-gray-800': !['COMPLETE', 'FAILED', 'ABORTED'].includes(entry.status)
+                                          'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200': entry.status === 'COMPLETE',
+                                          'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200': entry.status === 'FAILED',
+                                          'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200': entry.status === 'ABORTED',
+                                          'bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-gray-200': !['COMPLETE', 'FAILED', 'ABORTED'].includes(entry.status)
                                       }"
                                       x-text="entry.status">
                                 </span>
@@ -89,14 +89,14 @@
                                 <!-- Actions -->
                                 <div class="flex items-center space-x-1">
                                     <button @click="copyUrl(entry.url)" 
-                                            class="text-gray-400 hover:text-gray-600"
+                                            class="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 p-1 rounded transition-colors duration-200"
                                             title="Copy URL">
                                         <i class="fas fa-copy"></i>
                                     </button>
                                     
                                     <button x-show="entry.status === 'FAILED' && entry.last_index" 
                                             @click="retryDownload(entry)"
-                                            class="text-blue-400 hover:text-blue-600"
+                                            class="text-blue-400 dark:text-blue-300 hover:text-blue-600 dark:hover:text-blue-200 p-1 rounded transition-colors duration-200"
                                             title="Retry Download">
                                         <i class="fas fa-redo"></i>
                                     </button>
@@ -106,8 +106,8 @@
                         
                         <!-- Error Details -->
                         <div x-show="entry.status === 'FAILED' && entry.error" 
-                             class="mt-3 p-3 bg-red-50 border border-red-200 rounded-md">
-                            <p class="text-sm text-red-700" x-text="entry.error"></p>
+                             class="mt-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
+                            <p class="text-sm text-red-700 dark:text-red-300" x-text="entry.error"></p>
                         </div>
                     </div>
                 </template>
@@ -115,7 +115,7 @@
 
             <!-- Pagination -->
             <div x-show="!loading && filteredHistory.length > 0" class="mt-6 flex items-center justify-between">
-                <div class="text-sm text-gray-700">
+                <div class="text-sm text-gray-700 dark:text-gray-300">
                     Showing <span x-text="Math.min((currentPage - 1) * itemsPerPage + 1, filteredHistory.length)"></span> 
                     to <span x-text="Math.min(currentPage * itemsPerPage, filteredHistory.length)"></span> 
                     of <span x-text="filteredHistory.length"></span> results
@@ -124,17 +124,17 @@
                 <div class="flex items-center space-x-2" x-show="totalPages > 1">
                     <button @click="currentPage = Math.max(1, currentPage - 1)" 
                             :disabled="currentPage === 1"
-                            class="px-3 py-1 border border-gray-300 rounded-md text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                            class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200">
                         Previous
                     </button>
                     
-                    <span class="px-3 py-1 text-sm text-gray-700">
+                    <span class="px-3 py-1 text-sm text-gray-700 dark:text-gray-300">
                         Page <span x-text="currentPage"></span> of <span x-text="totalPages"></span>
                     </span>
                     
                     <button @click="currentPage = Math.min(totalPages, currentPage + 1)" 
                             :disabled="currentPage === totalPages"
-                            class="px-3 py-1 border border-gray-300 rounded-md text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                            class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200">
                         Next
                     </button>
                 </div>

@@ -4,20 +4,20 @@
 
 {% block content %}
 <div x-data="configEditor()" x-init="init()">
-    <div class="bg-white shadow rounded-lg">
+    <div class="bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors duration-200">
         <div class="px-4 py-5 sm:p-6">
             <div class="flex items-center justify-between mb-6">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">
-                    <i class="fas fa-cog mr-2"></i>Configuration Settings
+                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">
+                    <i class="fas fa-cog mr-2 text-primary-600 dark:text-primary-400"></i>Configuration Settings
                 </h3>
                 <div class="flex space-x-3">
                     <button @click="loadConfig()" 
-                            class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                            class="inline-flex items-center px-3 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:ring-offset-gray-800 focus:ring-primary-500 transition-colors duration-200">
                         <i class="fas fa-sync-alt mr-2"></i>Reload
                     </button>
                     <button @click="saveConfig()" 
                             :disabled="loading"
-                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50">
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:ring-offset-gray-800 focus:ring-primary-500 disabled:opacity-50 transition-colors duration-200">
                         <i class="fas fa-save mr-2" x-show="!loading"></i>
                         <i class="fas fa-spinner fa-spin mr-2" x-show="loading"></i>
                         <span x-text="loading ? 'Saving...' : 'Save Configuration'"></span>
@@ -28,82 +28,82 @@
             <div class="space-y-8">
                 <!-- Headers Section -->
                 <div>
-                    <h4 class="text-md font-medium text-gray-900 mb-4">
-                        <i class="fas fa-key mr-2"></i>Authentication Headers
+                    <h4 class="text-md font-medium text-gray-900 dark:text-white mb-4">
+                        <i class="fas fa-key mr-2 text-primary-600 dark:text-primary-400"></i>Authentication Headers
                     </h4>
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Cookie</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Cookie</label>
                             <textarea x-model="config.header.Cookie" 
-                                      class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" 
+                                      class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200" 
                                       rows="3" 
                                       placeholder="session_id=abc123; auth_token=xyz789"></textarea>
-                            <p class="mt-1 text-xs text-gray-500">Copy from browser DevTools → Network → Request Headers</p>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Copy from browser DevTools → Network → Request Headers</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">User-Agent</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">User-Agent</label>
                             <textarea x-model="config.header['User-Agent']" 
-                                      class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" 
+                                      class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200" 
                                       rows="3" 
                                       placeholder="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"></textarea>
-                            <p class="mt-1 text-xs text-gray-500">Copy from browser DevTools → Network → Request Headers</p>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Copy from browser DevTools → Network → Request Headers</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Post-Processing Section -->
                 <div>
-                    <h4 class="text-md font-medium text-gray-900 mb-4">
-                        <i class="fas fa-cogs mr-2"></i>Post-Processing Options
+                    <h4 class="text-md font-medium text-gray-900 dark:text-white mb-4">
+                        <i class="fas fa-cogs mr-2 text-primary-600 dark:text-primary-400"></i>Post-Processing Options
                     </h4>
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         <div class="flex items-center">
                             <input type="checkbox" 
                                    x-model="config.post_process.remux_to_mp4"
-                                   class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
-                            <label class="ml-2 block text-sm text-gray-900">
+                                   class="h-4 w-4 text-primary-600 dark:text-primary-500 focus:ring-primary-500 border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700">
+                            <label class="ml-2 block text-sm text-gray-900 dark:text-white">
                                 Remux to MP4
-                                <span class="block text-xs text-gray-500">Convert TS files to MP4 format</span>
+                                <span class="block text-xs text-gray-500 dark:text-gray-400">Convert TS files to MP4 format</span>
                             </label>
                         </div>
                         
                         <div class="flex items-center">
                             <input type="checkbox" 
                                    x-model="config.post_process.generate_thumbnail"
-                                   class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
-                            <label class="ml-2 block text-sm text-gray-900">
+                                   class="h-4 w-4 text-primary-600 dark:text-primary-500 focus:ring-primary-500 border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700">
+                            <label class="ml-2 block text-sm text-gray-900 dark:text-white">
                                 Generate Thumbnail
-                                <span class="block text-xs text-gray-500">Create preview images</span>
+                                <span class="block text-xs text-gray-500 dark:text-gray-400">Create preview images</span>
                             </label>
                         </div>
                         
                         <div class="flex items-center">
                             <input type="checkbox" 
                                    x-model="config.post_process.organize_output"
-                                   class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
-                            <label class="ml-2 block text-sm text-gray-900">
+                                   class="h-4 w-4 text-primary-600 dark:text-primary-500 focus:ring-primary-500 border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700">
+                            <label class="ml-2 block text-sm text-gray-900 dark:text-white">
                                 Organize Output
-                                <span class="block text-xs text-gray-500">Move files to output directory</span>
+                                <span class="block text-xs text-gray-500 dark:text-gray-400">Move files to output directory</span>
                             </label>
                         </div>
                         
                         <div class="flex items-center">
                             <input type="checkbox" 
                                    x-model="config.post_process.write_report"
-                                   class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
-                            <label class="ml-2 block text-sm text-gray-900">
+                                   class="h-4 w-4 text-primary-600 dark:text-primary-500 focus:ring-primary-500 border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700">
+                            <label class="ml-2 block text-sm text-gray-900 dark:text-white">
                                 Write Report
-                                <span class="block text-xs text-gray-500">Generate JSON reports</span>
+                                <span class="block text-xs text-gray-500 dark:text-gray-400">Generate JSON reports</span>
                             </label>
                         </div>
                         
                         <div class="flex items-center">
                             <input type="checkbox" 
                                    x-model="config.post_process.open_in_explorer"
-                                   class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
-                            <label class="ml-2 block text-sm text-gray-900">
+                                   class="h-4 w-4 text-primary-600 dark:text-primary-500 focus:ring-primary-500 border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700">
+                            <label class="ml-2 block text-sm text-gray-900 dark:text-white">
                                 Open in Explorer
-                                <span class="block text-xs text-gray-500">Show completed files</span>
+                                <span class="block text-xs text-gray-500 dark:text-gray-400">Show completed files</span>
                             </label>
                         </div>
                     </div>
@@ -111,29 +111,29 @@
 
                 <!-- Directory Settings -->
                 <div>
-                    <h4 class="text-md font-medium text-gray-900 mb-4">
-                        <i class="fas fa-folder mr-2"></i>Directory Settings
+                    <h4 class="text-md font-medium text-gray-900 dark:text-white mb-4">
+                        <i class="fas fa-folder mr-2 text-primary-600 dark:text-primary-400"></i>Directory Settings
                     </h4>
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Output Directory</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Output Directory</label>
                             <input type="text" 
                                    x-model="config.post_process.output_dir"
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
                                    placeholder="downloads">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Reports Directory</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Reports Directory</label>
                             <input type="text" 
                                    x-model="config.post_process.reports_dir"
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
                                    placeholder="reports">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Thumbnails Directory</label>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Thumbnails Directory</label>
                             <input type="text" 
                                    x-model="config.post_process.thumbnails_dir"
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
                                    placeholder="thumbnails">
                         </div>
                     </div>

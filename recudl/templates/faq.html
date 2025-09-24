@@ -6,10 +6,10 @@
 <div class="max-w-4xl mx-auto" x-data="faq()">
     <!-- Header -->
     <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">
-            <i class="fas fa-question-circle text-primary-600 mr-3"></i>Frequently Asked Questions
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <i class="fas fa-question-circle text-primary-600 dark:text-primary-400 mr-3"></i>Frequently Asked Questions
         </h1>
-        <p class="text-lg text-gray-600">Find answers to common questions about RecuDL</p>
+        <p class="text-lg text-gray-600 dark:text-gray-300">Find answers to common questions about RecuDL</p>
     </div>
 
     <!-- Search -->
@@ -18,10 +18,10 @@
             <input type="text" 
                    x-model="searchTerm" 
                    @input="filterFAQs()"
-                   class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                   class="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
                    placeholder="Search FAQ...">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <i class="fas fa-search text-gray-400"></i>
+                <i class="fas fa-search text-gray-400 dark:text-gray-500"></i>
             </div>
         </div>
     </div>
@@ -30,14 +30,14 @@
     <div class="mb-8">
         <div class="flex flex-wrap gap-2">
             <button @click="selectedCategory = 'all'; filterFAQs()" 
-                    :class="selectedCategory === 'all' ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'"
-                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors">
+                    :class="selectedCategory === 'all' ? 'bg-primary-600 dark:bg-primary-500 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'"
+                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200">
                 All
             </button>
             <template x-for="category in categories" :key="category">
                 <button @click="selectedCategory = category; filterFAQs()" 
-                        :class="selectedCategory === category ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'"
-                        class="px-4 py-2 rounded-full text-sm font-medium transition-colors capitalize"
+                        :class="selectedCategory === category ? 'bg-primary-600 dark:bg-primary-500 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'"
+                        class="px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 capitalize"
                         x-text="category">
                 </button>
             </template>
@@ -47,29 +47,29 @@
     <!-- FAQ Items -->
     <div class="space-y-4">
         <template x-for="(faq, index) in filteredFAQs" :key="index">
-            <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-900/50 border border-gray-200 dark:border-gray-700 overflow-hidden transition-colors duration-200">
                 <button @click="faq.open = !faq.open" 
-                        class="w-full px-6 py-4 text-left focus:outline-none focus:bg-gray-50 hover:bg-gray-50 transition-colors">
+                        class="w-full px-6 py-4 text-left focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
                     <div class="flex items-center justify-between">
                         <div class="flex items-start space-x-3">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors duration-200"
                                   :class="{
-                                      'bg-blue-100 text-blue-800': faq.category === 'setup',
-                                      'bg-green-100 text-green-800': faq.category === 'downloading',
-                                      'bg-yellow-100 text-yellow-800': faq.category === 'troubleshooting',
-                                      'bg-purple-100 text-purple-800': faq.category === 'features',
-                                      'bg-red-100 text-red-800': faq.category === 'errors'
+                                      'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200': faq.category === 'setup',
+                                      'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200': faq.category === 'downloading',
+                                      'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200': faq.category === 'troubleshooting',
+                                      'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200': faq.category === 'features',
+                                      'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200': faq.category === 'errors'
                                   }"
                                   x-text="faq.category">
                             </span>
-                            <h3 class="text-lg font-medium text-gray-900" x-text="faq.question"></h3>
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-white" x-text="faq.question"></h3>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-400 transition-transform" 
+                        <i class="fas fa-chevron-down text-gray-400 dark:text-gray-500 transition-transform duration-200" 
                            :class="faq.open ? 'transform rotate-180' : ''"></i>
                     </div>
                 </button>
                 <div x-show="faq.open" x-collapse class="px-6 pb-4">
-                    <div class="prose prose-sm max-w-none text-gray-700" x-html="faq.answer"></div>
+                    <div class="prose prose-sm max-w-none text-gray-700 dark:text-gray-300 dark:prose-invert" x-html="faq.answer"></div>
                 </div>
             </div>
         </template>
@@ -77,20 +77,20 @@
 
     <!-- No Results -->
     <div x-show="filteredFAQs.length === 0" class="text-center py-12">
-        <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
-        <h3 class="text-lg font-medium text-gray-900 mb-2">No results found</h3>
-        <p class="text-gray-600">Try adjusting your search terms or category filter</p>
+        <i class="fas fa-search text-4xl text-gray-400 dark:text-gray-500 mb-4"></i>
+        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">No results found</h3>
+        <p class="text-gray-600 dark:text-gray-400">Try adjusting your search terms or category filter</p>
     </div>
 
     <!-- Still Need Help -->
-    <div class="mt-12 bg-gradient-to-r from-primary-50 to-blue-50 rounded-lg p-6 text-center">
-        <h2 class="text-xl font-semibold text-gray-900 mb-2">Still need help?</h2>
-        <p class="text-gray-600 mb-4">Can't find what you're looking for?</p>
+    <div class="mt-12 bg-gray-50 dark:bg-gray-800 rounded-lg p-6 text-center border border-gray-200 dark:border-gray-700 transition-colors duration-200">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Still need help?</h2>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">Can't find what you're looking for?</p>
         <div class="space-x-4">
-            <a href="/get-started" class="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors">
+            <a href="/get-started" class="inline-flex items-center px-4 py-2 bg-primary-600 dark:bg-primary-500 text-white rounded-md hover:bg-primary-700 dark:hover:bg-primary-600 transition-colors duration-200">
                 <i class="fas fa-rocket mr-2"></i>Get Started Guide
             </a>
-            <a href="https://github.com/your-repo/issues" target="_blank" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors">
+            <a href="https://github.com/your-repo/issues" target="_blank" class="inline-flex items-center px-4 py-2 bg-gray-600 dark:bg-gray-700 text-white rounded-md hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-200">
                 <i class="fas fa-bug mr-2"></i>Report Issue
             </a>
         </div>
@@ -112,7 +112,7 @@ function faq() {
                 answer: `
                     <ol class="list-decimal list-inside space-y-2">
                         <li>Open <strong>recu.me</strong> in your browser and log in</li>
-                        <li>Press <kbd class="bg-gray-100 px-2 py-1 rounded">F12</kbd> to open Developer Tools</li>
+                        <li>Press <kbd class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded">F12</kbd> to open Developer Tools</li>
                         <li>Go to the <strong>Network</strong> tab</li>
                         <li>Refresh the page</li>
                         <li>Click on any request to recu.me</li>
@@ -140,12 +140,12 @@ function faq() {
                 question: 'How do I download only part of a video?',
                 answer: `
                     <p>Use the time range format when adding URLs:</p>
-                    <div class="bg-gray-100 rounded p-3 my-2">
-                        <code>https://recu.me/video/username/play,START,END,TOTAL</code>
+                    <div class="bg-gray-100 dark:bg-gray-700 rounded p-3 my-2">
+                        <code class="text-gray-800 dark:text-gray-200">https://recu.me/video/username/play,START,END,TOTAL</code>
                     </div>
                     <p><strong>Example:</strong> To download from 10 minutes to 25 minutes of a 30-minute video:</p>
-                    <div class="bg-gray-100 rounded p-3 my-2">
-                        <code>https://recu.me/video/username/play,10:00,25:00,30:00</code>
+                    <div class="bg-gray-100 dark:bg-gray-700 rounded p-3 my-2">
+                        <code class="text-gray-800 dark:text-gray-200">https://recu.me/video/username/play,10:00,25:00,30:00</code>
                     </div>
                 `,
                 open: false
@@ -155,8 +155,8 @@ function faq() {
                 question: 'Can I download multiple videos at once?',
                 answer: `
                     <p>Yes! Simply paste multiple URLs in the Dashboard, one per line:</p>
-                    <div class="bg-gray-100 rounded p-3 my-2">
-                        <code>https://recu.me/video/user1/play<br>
+                    <div class="bg-gray-100 dark:bg-gray-700 rounded p-3 my-2">
+                        <code class="text-gray-800 dark:text-gray-200">https://recu.me/video/user1/play<br>
                         https://recu.me/video/user2/play<br>
                         https://recu.me/video/user3/play,5:00,15:00,20:00</code>
                     </div>
@@ -283,7 +283,7 @@ function faq() {
                 answer: `
                     <p>By default, the web interface only accepts connections from localhost (127.0.0.1). To access it remotely:</p>
                     <ol class="list-decimal list-inside space-y-1 mt-2">
-                        <li>Start the server with: <code class="bg-gray-100 px-2 py-1 rounded">python -m recu_download --web-ui 0.0.0.0 8080</code></li>
+                        <li>Start the server with: <code class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded">python -m recu_download --web-ui 0.0.0.0 8080</code></li>
                         <li>Access it from other devices using your computer's IP address</li>
                         <li><strong>Security Warning:</strong> This makes the interface accessible to anyone on your network</li>
                     </ol>
