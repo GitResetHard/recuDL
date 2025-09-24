@@ -35,7 +35,7 @@ A modern video downloader for Recu.me with a sleek web interface and powerful CL
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/RecuDL.git
+   git clone https://github.com/GitResetHard/RecuDL.git
    cd RecuDL
    ```
 
@@ -227,9 +227,9 @@ This tool is for educational purposes only. Users are responsible for complying 
 
 ## 🔗 Links
 
-- **Issues**: [Report bugs or request features](https://github.com/yourusername/RecuDL/issues)
-- **Discussions**: [Community discussions](https://github.com/yourusername/RecuDL/discussions)
-- **Releases**: [Download latest version](https://github.com/yourusername/RecuDL/releases)
+- **Issues**: [Report bugs or request features](https://github.com/GitResetHard/RecuDL/issues)
+- **Discussions**: [Community discussions](https://github.com/GitResetHard/RecuDL/discussions)
+- **Releases**: [Download latest version](https://github.com/GitResetHard/RecuDL/releases)
 
 ---
 
