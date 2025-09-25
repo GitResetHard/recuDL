@@ -31,6 +31,92 @@
                     <h4 class="text-md font-medium text-gray-900 dark:text-white mb-4">
                         <i class="fas fa-key mr-2 text-primary-600 dark:text-primary-400"></i>Authentication Headers
                     </h4>
+                    
+                    <!-- Easy Cookie Setup -->
+                    <div class="bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 dark:from-indigo-900/20 dark:via-purple-900/20 dark:to-pink-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-6 mb-6">
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 mb-2">
+                                🚀 One-Click Cookie Setup
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">
+                                The easiest way to get your authentication - works with any browser!
+                            </p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <!-- Step 1 -->
+                            <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border-2 border-purple-200 dark:border-purple-700 shadow-md">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-2 shadow">1</span>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">Save Bookmarklet</h4>
+                                </div>
+                                <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                                    <strong>Drag</strong> this magic button to your bookmarks bar ↑
+                                </p>
+                                <a href="javascript:(function(){var c=document.cookie;var u=navigator.userAgent;var url='http://127.0.0.1:8080/config?cookies='+encodeURIComponent(c)+'&userAgent='+encodeURIComponent(u);window.location.href=url;})();" 
+                                   class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 shadow-lg transform hover:scale-105">
+                                    <i class="fas fa-cookie-bite mr-2"></i>RecuDL Cookie Grabber
+                                </a>
+                                <div class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-info-circle mr-1"></i>Can't see bookmarks bar?<br>
+                                    Press <kbd class="px-1 py-0.5 text-xs bg-gray-100 dark:bg-gray-700 rounded">Ctrl+Shift+B</kbd>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 2 -->
+                            <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border-2 border-blue-200 dark:border-blue-700 shadow-md">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-2 shadow">2</span>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">Login to Recu</h4>
+                                </div>
+                                <div class="text-xs text-gray-600 dark:text-gray-400 space-y-2">
+                                    <p>📍 Navigate to <a href="https://recu.me" target="_blank" class="text-blue-600 dark:text-blue-400 underline font-semibold">recu.me</a></p>
+                                    <p>🔑 Sign in to your account</p>
+                                    <p>✅ Make sure you're logged in</p>
+                                </div>
+                                <div class="mt-3 p-2 bg-blue-50 dark:bg-blue-900/20 rounded-md">
+                                    <p class="text-xs text-blue-700 dark:text-blue-300">
+                                        <i class="fas fa-lightbulb mr-1"></i>
+                                        <strong>Tip:</strong> Stay on recu.me after login
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 3 -->
+                            <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border-2 border-green-200 dark:border-green-700 shadow-md">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-2 shadow">3</span>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">Click & Done!</h4>
+                                </div>
+                                <div class="text-xs text-gray-600 dark:text-gray-400 space-y-2">
+                                    <p>🎯 Click your saved bookmarklet</p>
+                                    <p>⚡ Redirects back to RecuDL</p>
+                                    <p>✨ Cookies auto-fill instantly!</p>
+                                </div>
+                                <div class="mt-3 p-2 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-md">
+                                    <p class="text-xs font-semibold text-green-700 dark:text-green-300">
+                                        <i class="fas fa-sparkles mr-1"></i>
+                                        Remember to click "Save Configuration"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Troubleshooting -->
+                        <div class="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-md">
+                            <details class="cursor-pointer">
+                                <summary class="text-xs font-semibold text-yellow-800 dark:text-yellow-200">
+                                    <i class="fas fa-question-circle mr-1"></i>Not working? Click here for help
+                                </summary>
+                                <div class="mt-2 text-xs text-yellow-700 dark:text-yellow-300 space-y-1">
+                                    <p>• <strong>Bookmarklet not appearing?</strong> Make sure bookmarks bar is visible (Ctrl+Shift+B)</p>
+                                    <p>• <strong>Fields not filling?</strong> Ensure RecuDL is running on http://127.0.0.1:8080</p>
+                                    <p>• <strong>Still issues?</strong> You can manually copy cookies from DevTools (F12 → Network tab)</p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                    
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Cookie</label>
@@ -167,17 +253,45 @@ function configEditor() {
         loading: false,
         
         async init() {
-            await this.loadConfig();
+            // Check URL params first (in case this is from bookmarklet)
+            const urlParams = new URLSearchParams(window.location.search);
+            const cookies = urlParams.get('cookies');
+            const userAgent = urlParams.get('userAgent');
+            
+            if (cookies && userAgent) {
+                console.log('Bookmarklet detected! Filling fields...');
+                // Pre-fill with URL params
+                this.config.header.Cookie = decodeURIComponent(cookies);
+                this.config.header['User-Agent'] = decodeURIComponent(userAgent);
+                console.log('Cookie filled:', this.config.header.Cookie);
+                console.log('User-Agent filled:', this.config.header['User-Agent']);
+                
+                // Load existing config but don't overwrite if we have URL params
+                await this.loadConfig(true);
+                
+                showToast('🍪 Cookies auto-filled from bookmarklet! Don\'t forget to save.', 'success');
+                
+                // Clean up URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else {
+                // Normal load
+                await this.loadConfig(false);
+            }
         },
         
-        async loadConfig() {
+        async loadConfig(hasUrlParams = false) {
             try {
                 const data = await apiCall('/api/config');
-                this.config.header = data.header || this.config.header;
+                // Only update if we don't have URL params, or if the fields are empty
+                if (!hasUrlParams) {
+                    this.config.header = data.header || this.config.header;
+                }
                 this.config.post_process = data.post_process || this.config.post_process;
             } catch (error) {
                 console.error('Failed to load config:', error);
-                showToast('Failed to load configuration', 'error');
+                if (!hasUrlParams) {
+                    showToast('Failed to load configuration', 'error');
+                }
             }
         },
         

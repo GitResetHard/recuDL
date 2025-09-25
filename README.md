@@ -17,6 +17,7 @@ A modern video downloader for Recu.me with a sleek web interface and powerful CL
 
 ### 🌐 **Modern Web Interface**
 - **Real-time dashboard** with live progress monitoring
+- **⚡ Instant cookie setup** with drag-and-drop bookmarklet (30 seconds!)
 - **Configuration editor** for authentication and settings
 - **Download history** with search and retry functionality
 - **Built-in documentation** (Get Started guide + FAQ)
@@ -48,6 +49,10 @@ A modern video downloader for Recu.me with a sleek web interface and powerful CL
    - Download from [ffmpeg.org](https://ffmpeg.org/download.html)
    - Add to your system PATH
 
+4. **Any Browser** (for cookie setup)
+   - Use the built-in bookmarklet method (works in any browser)
+   - No downloads or installations needed
+
 ### Web Interface (Recommended)
 
 1. **Start the web server**
@@ -61,7 +66,8 @@ A modern video downloader for Recu.me with a sleek web interface and powerful CL
    ```
 
 3. **Configure authentication** (Configuration page)
-   - Add your Cookie and User-Agent from Recu.me
+   - Use the **bookmarklet method** for instant cookie setup (30 seconds!)
+   - Or manually copy Cookie and User-Agent from browser DevTools
    - See the Get Started guide for detailed instructions
 
 4. **Start downloading** (Dashboard page)
